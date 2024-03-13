@@ -3,13 +3,13 @@ FROM alpine:3.19
 LABEL maintainer="Matt Titmus <matthew.titmus@gmail.com>"
 LABEL date="2024-02-19"
 
-ARG DOCKER_VERSION=1.11.1
+ARG DOCKER_VERSION=25.0.4
 
 # We get curl so that we can avoid a separate ADD to fetch the Docker binary, and then we'll remove it.
 # Blatantly "borrowed" from Spotify's spotify/docker-gc image. Thanks, folks!
 RUN apk --update add bash curl tzdata \
   && cd /tmp/ \
-  && curl -sSL -O https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz \
+  && curl -sSL -O https://download.docker.com/linux/static/stable/aarch64/docker-${DOCKER_VERSION}.tgz \
   && tar zxf docker-${DOCKER_VERSION}.tgz \
   && mkdir -p /usr/local/bin/ \
   && mv /tmp/docker/docker /usr/local/bin/ \
